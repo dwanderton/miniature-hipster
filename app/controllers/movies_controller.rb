@@ -18,7 +18,6 @@ class MoviesController < ApplicationController
     @movies = Movie.order("release")
   end
 
-
   def new
     # default: render 'new' template
   end
