@@ -1,0 +1,7 @@
+Sat, 09 Feb 2013 10:25:33 -0800
+doc/README_FOR_APP	Sun, 03 Feb 2013 16:43:20 -0800
+app/models/movie.rb	Sun, 03 Feb 2013 16:43:20 -0800
+app/helpers/application_helper.rb	Sun, 03 Feb 2013 16:43:20 -0800
+app/helpers/movies_helper.rb	Sun, 03 Feb 2013 16:43:20 -0800
+app/controllers/application_controller.rb	Sun, 03 Feb 2013 16:43:20 -0800
+app/controllers/movies_controller.rb	Tue, 05 Feb 2013 18:29:58 -0800
