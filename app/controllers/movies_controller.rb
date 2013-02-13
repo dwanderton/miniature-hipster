@@ -10,14 +10,6 @@ class MoviesController < ApplicationController
     @movies = Movie.order(params[:order])
   end
 
-  def indexbytitle
-    @movies = Movie.order("title")
-  end
-
-  def indexbyrelease
-    @movies = Movie.order("release_date")
-  end
-
   def new
     # default: render 'new' template
   end
