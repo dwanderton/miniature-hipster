@@ -7,6 +7,7 @@ class MoviesController < ApplicationController
   end
 
   def index
+    @order = params[:order]
     @movies = Movie.order(params[:order])
   end
 
