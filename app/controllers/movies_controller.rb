@@ -7,7 +7,6 @@ class MoviesController < ApplicationController
   end
 
   def index
-    debugger
     @movies = Movie.order(params[:order])
   end
 
@@ -16,7 +15,7 @@ class MoviesController < ApplicationController
   end
 
   def indexbyrelease
-    @movies = Movie.order("release")
+    @movies = Movie.order("release_date")
   end
 
   def new
