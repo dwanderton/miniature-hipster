@@ -7,16 +7,17 @@ class MoviesController < ApplicationController
   end
 
   def index
+    @ratings_sel = params[:ratings]
     @order = params[:order]
     @all_ratings = Movie.select(:rating).map(&:rating).uniq
-    @movies = Movie.order(params[:order])
+    @movies = Movie.where("rating = 'PG'").order(params[:order])
   end
 
   def new
     # default: render 'new' template
   end
 
-  def create
+  def creates
     @movie = Movie.create!(params[:movie])
     flash[:notice] = "#{@movie.title} was successfully created."
     redirect_to movies_path
