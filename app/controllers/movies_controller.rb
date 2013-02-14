@@ -7,7 +7,6 @@ class MoviesController < ApplicationController
   end
 
   def index
-    debugger
     @order = params[:order]
     @all_ratings = Movie.select(:rating).map(&:rating).uniq
     @movies = Movie.order(params[:order])
