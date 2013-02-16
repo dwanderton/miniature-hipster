@@ -7,10 +7,19 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @ratings_sel = params[:ratings]
+    #set order for use later
     @order = params[:order]
+
+    #avoid an exception if empty array
+    if params[:ratings] != nil
+      @ratings_sel = params[:ratings].keys
+      #@movies = Movie.where("rating = ?", @ratings_sel).order(params[:order])
+      @movies = Movie.where(:rating => @ratings_sel).order(params[:order])
+    else
+      @movies = Movie.order(params[:order])
+    end  
+    #select ratings for check bokes
     @all_ratings = Movie.select(:rating).map(&:rating).uniq
-    @movies = Movie.where("rating = 'PG'").order(params[:order])
   end
 
   def new
