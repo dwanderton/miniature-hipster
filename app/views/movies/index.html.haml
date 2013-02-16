@@ -4,8 +4,11 @@
 = form_tag movies_path, {:method => :get, :id => "ratings_form"} do
   Include: 
   - @all_ratings.each do |rating|
-    = rating
-    = check_box_tag("ratings[#{rating}]", value = 1, checked = true)
+    = rating    
+    - if @ratings_sel.include? rating
+      = check_box_tag("ratings[#{rating}]", value = 1, checked = true)
+    - else
+      = check_box_tag("ratings[#{rating}]", value = 0, checked = false)
   = submit_tag 'Refresh', :id =>"ratings_submit"
 
 %table#movies

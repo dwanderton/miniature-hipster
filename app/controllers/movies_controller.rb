@@ -20,6 +20,7 @@ class MoviesController < ApplicationController
     end  
     #select ratings for check bokes
     @all_ratings = Movie.select(:rating).map(&:rating).uniq
+    debugger
   end
 
   def new
