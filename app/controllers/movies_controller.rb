@@ -9,12 +9,14 @@ class MoviesController < ApplicationController
   def index
     #remember the users choices and update with the latest preferences
     session.update(params)
-    debugger
     #set order of the movies selected by user, use session to persist
     if params[:order] != nil
       @order = params[:order]
-    else
+    elsif session[:order] != nil
       @order = session[:order]
+    else
+      #first time then I guess
+      @order = nil
     end
 
     #avoid an exception if empty array
@@ -26,9 +28,11 @@ class MoviesController < ApplicationController
       @movies = Movie.where(:rating => @ratings_sel).order(params[:order])
     elsif session[:ratings] != nil
       #no ratings selected - ok I'll give you what you asked for before
-      @ratings_persist = params[:ratings]      
-      @ratings_sel = session[:ratings].keys
-      @movies = Movie.where(:rating => @ratings_sel).order(params[:order])
+      redirect_to session
+      #below previously used to persist options - now not neccessary as using a RESTful session route as above.
+      ##@ratings_persist = params[:ratings]      
+      ##@ratings_sel = session[:ratings].keys
+      ##@movies = Movie.where(:rating => @ratings_sel).order(params[:order])
     else
       #first time here? have all the movies.
        @movies = Movie.all
