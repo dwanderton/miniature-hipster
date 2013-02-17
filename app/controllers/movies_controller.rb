@@ -8,6 +8,7 @@ class MoviesController < ApplicationController
 
   def index
     #remember the users choices and update with the latest preferences
+    #slightly concerned about how sessions is working...
     session.update(params)
     #set order of the movies selected by user, use session to persist
     if params[:order] != nil
