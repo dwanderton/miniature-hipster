@@ -10,8 +10,12 @@ class MoviesController < ApplicationController
     #remember the users choices and update with the latest preferences
     session.update(params)
 
-    #set order for use later
-    @order = params[:order]
+    #set order of the movies selected by user, use session to persist
+    if params[:order] != nil
+      @order = params[:order]
+    else
+      @order = session[:order]
+    end
 
     #avoid an exception if empty array
     if params[:ratings] != nil
