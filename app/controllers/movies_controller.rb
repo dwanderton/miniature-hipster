@@ -9,7 +9,7 @@ class MoviesController < ApplicationController
   def index
     #remember the users choices and update with the latest preferences
     session.update(params)
-
+    debugger
     #set order of the movies selected by user, use session to persist
     if params[:order] != nil
       @order = params[:order]
@@ -24,11 +24,15 @@ class MoviesController < ApplicationController
       #dont care about the value just pass me the ratings
       @ratings_sel = params[:ratings].keys
       @movies = Movie.where(:rating => @ratings_sel).order(params[:order])
-    else
+    elsif session[:ratings] != nil
       #no ratings selected - ok I'll give you what you asked for before
       @ratings_persist = params[:ratings]      
       @ratings_sel = session[:ratings].keys
       @movies = Movie.where(:rating => @ratings_sel).order(params[:order])
+    else
+      #first time here? have all the movies.
+       @movies = Movie.all
+
     end  
     #select ratings for check bokes
     @all_ratings = Movie.select(:rating).map(&:rating).uniq
