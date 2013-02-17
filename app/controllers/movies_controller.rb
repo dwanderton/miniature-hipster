@@ -7,17 +7,24 @@ class MoviesController < ApplicationController
   end
 
   def index
+    #remember the users choices and update with the latest preferences
+    session.update(params)
+
     #set order for use later
     @order = params[:order]
 
     #avoid an exception if empty array
     if params[:ratings] != nil
+      #allows ratings to be persisted across page click on the rating sort header
       @ratings_persist = params[:ratings]
+      #dont care about the value just pass me the ratings
       @ratings_sel = params[:ratings].keys
-      #@movies = Movie.where("rating = ?", @ratings_sel).order(params[:order])
       @movies = Movie.where(:rating => @ratings_sel).order(params[:order])
     else
-      @movies = Movie.order(params[:order])
+      #no ratings selected - ok I'll give you what you asked for before
+      @ratings_persist = params[:ratings]      
+      @ratings_sel = session[:ratings].keys
+      @movies = Movie.where(:rating => @ratings_sel).order(params[:order])
     end  
     #select ratings for check bokes
     @all_ratings = Movie.select(:rating).map(&:rating).uniq
