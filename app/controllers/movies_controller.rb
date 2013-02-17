@@ -12,6 +12,7 @@ class MoviesController < ApplicationController
 
     #avoid an exception if empty array
     if params[:ratings] != nil
+      @ratings_persist = params[:ratings]
       @ratings_sel = params[:ratings].keys
       #@movies = Movie.where("rating = ?", @ratings_sel).order(params[:order])
       @movies = Movie.where(:rating => @ratings_sel).order(params[:order])
