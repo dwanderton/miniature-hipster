@@ -1,0 +1,4 @@
+# Historical findings baselined 2026-11-12 (reviewed; see security sweep notes).
+1d456d0b53e7e4d1a940c1f7ee28ec656c0f83a0:config/initializers/secret_token.rb:generic-api-key:7
+520acbc8a0dd43d4baf4519d632a20227ae207dd:config/initializers/secret_token.rb:generic-api-key:7
+acedabbeba2e6e93e42364bde7838b58ba74d1c9:config/initializers/secret_token.rb:generic-api-key:7
